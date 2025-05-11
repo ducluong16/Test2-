@@ -1,37 +1,35 @@
 pipeline {
-  agent any
-  tools {
-    maven 'Maven'
-  }
-  stages {
-    stage("build jar") {
-      steps {
-        script {
-          echo 'building the application...'
-          sh 'mvn package'
-        }
-      }
+    agent any
+    tools {
+        maven
     }
-    stage("build image") {
-      steps {
-        script {
-          echo 'building the docker image...'
-          withCredentials([
-            usernamePassword(credentialsId: 'Docker_Hub', usernameVariable: 'USERNAME', passwordVariable: 'PWD')
-          ]) {
-            sh 'docker build -t ducluong16/luongpham:2.0 .'
-            sh "echo $PWD | docker login -u $USERNAME --password-stdin"
-            sh 'docker push ducluong16/luongpham:2.0'
-          }
+    stages {
+        stage("build jar"){
+            steps{
+                script {
+                    echo 'building the application'
+                    sh 'mvn package'
+                }
+            }
         }
-      }
-    }
-    stage("deploy") {
-      steps {
-        script {
-          echo 'deploying the application...'
+
+        stage("build image"){
+            steps{
+                script{
+                    echo 'building the image...'
+                    withCredentials([
+                        usernamePassword(
+                            credentialsId: 'Docker_Hub'
+                            usernameVariable: 'USERNAME'
+                            passwordVariable: 'PWD'
+                        )
+                    ]){
+                        sh 'docker build -t ducluong16/luongpham:3.0 .'
+                        sh "echo $PWD | docker login -u $USERNAME --password-stdin"
+                        sh 'docker push ducluong16/luongpham:3.0'
+                    }
+                }
+            }
         }
-      }
-    }
-  }
+    }   
 }
