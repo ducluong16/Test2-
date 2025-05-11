@@ -19,8 +19,8 @@ pipeline {
                     echo 'building the image...'
                     withCredentials([
                         usernamePassword(
-                            credentialsId: 'Docker_Hub'
-                            usernameVariable: 'USERNAME'
+                            credentialsId: 'Docker_Hub',
+                            usernameVariable: 'USERNAME',
                             passwordVariable: 'PWD'
                         )
                     ]){
