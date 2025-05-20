@@ -16,7 +16,7 @@ pipeline {
         stage("build image"){
             steps{
                 script{
-                    echo ' Pham Duc Luong '
+                    echo ' Pham Duc Luong Deeeeee '
             }
         }
     }   
