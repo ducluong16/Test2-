@@ -16,19 +16,7 @@ pipeline {
         stage("build image"){
             steps{
                 script{
-                    echo 'building the image...'
-                    withCredentials([
-                        usernamePassword(
-                            credentialsId: 'Docker_Hub',
-                            usernameVariable: 'USERNAME',
-                            passwordVariable: 'PWD'
-                        )
-                    ]){
-                        sh 'docker build -t ducluong16/luongpham:4.0 .'
-                        sh "echo $PWD | docker login -u $USERNAME --password-stdin"
-                        sh 'docker push ducluong16/luongpham:4.0'
-                    }
-                }
+                    echo ' Pham Duc Luong '
             }
         }
     }   
