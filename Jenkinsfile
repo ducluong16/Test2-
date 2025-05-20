@@ -7,7 +7,7 @@ pipeline {
         stage("build jar"){
             steps{
                 script {
-                    echo 'building the application'
+                    echo 'building the application ffff '
                     sh 'mvn package'
                 }
             }
@@ -16,7 +16,7 @@ pipeline {
         stage("build image"){
             steps{
                 script{
-                    echo ' Pham Duc Luong Deeeeee '
+                    echo ' Pham Duc Luong ee '
             }
         }
     }   
